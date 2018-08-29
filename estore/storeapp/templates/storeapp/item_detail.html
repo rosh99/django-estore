@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+{% extends "storeapp/base.html" %}
+{% load static %}
+{% block body_block %}
+<ul class="navbar-nav mr-auto">
+  <form class="form-inline my-2 my-lg-0" method="get" action="{% url 'storeapp:item-search' %}">
+    <input class="form-control mr-sm-2" name="search" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+  </form>
+</ul>
+{% endblock %}
+ {% block body_content %}
+ <div class="container">
+
+    <div class="row">
+  {% for cat in item %}
+      <div class="col-lg-5">
+        <img class="card-img-top img-fluid" src="{{cat.image.url}}" style="padding-top:70px">
+
+
+      </div>
+      <!-- /.col-lg-3 -->
+
+      <div class="col-lg-7">
+
+        <div class="card mt-4">
+
+          <div class="card-body">
+            <h3 class="card-title">{{cat.item_name}}</h3>
+            <h4>Rs.{{cat.price}}</h4>
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente dicta fugit fugiat hic aliquam itaque facere, soluta. Totam id dolores, sint aperiam sequi pariatur praesentium animi perspiciatis molestias iure, ducimus!</p>
+          </div>
+        </div>
+        {% endfor  %}
+        <!-- /.card -->
+
+        <div class="card card-outline-secondary my-4">
+          <div class="card-header">
+            Product Reviews
+          </div>
+          <div class="card-body">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
+            <small class="text-muted">Posted by Anonymous on 3/1/17</small>
+            <hr>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
+            <small class="text-muted">Posted by Anonymous on 3/1/17</small>
+            <hr>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
+            <small class="text-muted">Posted by Anonymous on 3/1/17</small>
+            <hr>
+            <a href="#" class="btn btn-success">Leave a Review</a>
+          </div>
+        </div>
+        <!-- /.card -->
+
+      </div>
+      <!-- /.col-lg-9 -->
+
+    </div>
+
+  </div>
+
+
+  {% endblock %}

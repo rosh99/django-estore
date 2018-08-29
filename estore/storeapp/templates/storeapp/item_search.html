@@ -1,0 +1,54 @@
+{% extends 'storeapp/base.html' %}
+
+{% block body_block %}
+<ul class="navbar-nav mr-auto">
+  <form class="form-inline my-2 my-lg-0" method="get" action="{% url 'storeapp:item-search' %}">
+    <input class="form-control mr-sm-2" name="search" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+  </form>
+</ul>
+{% endblock %}
+
+{% block body_content %}
+{% if search_item %}
+<div class="container">
+  <div class="row">
+    <p>Results for the keyword "{{obj}}"</p>
+    <div class="col-sm-3">
+
+    </div>
+    <div class="col-sm-9">
+      <div class="container-fluid" style="padding-top:20px">
+        <!-- <h1>{{item_list}}</h1> -->
+        <div class="row">
+
+          {% for i in search_item %}
+          <div class="col-sm-4" style="padding-top:20px">
+            <div class="card h-100">
+                <a href="{% url 'storeapp:item_detail' slug=i.slug %}"><img class="card-img-top" src="{{i.image.url}}" width="200px"></a>
+                  <div class="card-body">
+                    <h4 class="card-title">
+                      <a href="{% url 'storeapp:item_detail' slug=i.slug %}">{{ i.item_name }}</a>
+                    </h4>
+                    <h5>Rs.{{i.price}}</h5>
+                    <!-- <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p> -->
+                   </div>
+                   <div class="card-footer">
+                    <a href="{% url 'cart:cart_add' product_id=i.pk %}" ><button type="button" class="btn btn-danger">Add To Cart</button>
+                    </a>
+                  </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    {% else %}
+    <p>No results found for the Keyword "{{obj}}"</p>
+  </div>
+</div>
+
+
+{% endif %}
+
+{% endblock %}

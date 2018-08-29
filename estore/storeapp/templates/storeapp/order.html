@@ -1,0 +1,28 @@
+{% extends "storeapp/base.html" %}
+{% block body_content %}
+<div class="jumbotron">
+  <div class="container">
+        <table>
+          <tr>
+            <th><h1>Your orders:</h1></th>
+            <th></th>
+          </tr>
+          {% for i in cart %}
+          {% with p=i.product %}
+          <tr>
+          <td><b>{{i.quantity}}x</b>  {{p.item_name}}</td>
+          <td><b>Rs. {{i.price}}</b></td>
+          </tr>
+          {% endwith %}
+          {% endfor %}
+          <tr>
+            <td></td>
+            <td><h3>Total Amount: Rs. {{cart.get_total_price}}</h3>
+            <a href="{% url 'storeapp:fin_order' %}" ><button type="button" class="btn btn-danger">Confirm Order!</button>
+            </a></td>
+          </tr>
+
+        </table>
+  </div>
+</div>
+{% endblock %}
